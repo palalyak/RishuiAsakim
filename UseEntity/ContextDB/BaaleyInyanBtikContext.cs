@@ -57,6 +57,8 @@ namespace Infrastructure.ContextDB
                     .HasMaxLength(450)
                     .HasColumnName("fk_Mezahe_baal_inyan");
 
+                entity.Property(e => e.FkMisparBakashaBapamHarishona).HasColumnName("fk_mispar_bakasha_bapam_harishona");
+
                 entity.Property(e => e.FkSugBaalInyan).HasColumnName("fk_sug_baal_inyan");
 
                 entity.Property(e => e.IpAddress).HasMaxLength(15);
@@ -69,8 +71,6 @@ namespace Infrastructure.ContextDB
                     .IsRequired()
                     .IsRowVersion()
                     .IsConcurrencyToken();
-
-                entity.Property(e => e.SkMisparBakashaBapamHarishona).HasColumnName("sk_mispar_bakasha_bapam_harishona");
 
                 entity.Property(e => e.StakeholderId1).HasMaxLength(450);
 

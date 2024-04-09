@@ -8,7 +8,7 @@ namespace Infrastructure.Models
         public int PkBaaleyInyanBtik { get; set; }
         public int FkCodeEssek { get; set; }
         public string FkMezaheBaalInyan { get; set; }
-        public int? SkMisparBakashaBapamHarishona { get; set; }
+        public int? FkMisparBakashaBapamHarishona { get; set; }
         public int? FkSugBaalInyan { get; set; }
         public string Telephone1 { get; set; }
         public string Telephone2 { get; set; }

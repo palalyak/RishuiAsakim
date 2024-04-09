@@ -46,6 +46,10 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.FkSemelMegurim).HasColumnName("fk_semel_megurim");
+
+                entity.Property(e => e.FkSemelYeshuv).HasColumnName("fk_semel_yeshuv");
+
                 entity.Property(e => e.FkSugZihui).HasColumnName("fk_sug_zihui");
 
                 entity.Property(e => e.IpAddress).HasMaxLength(15);
@@ -70,10 +74,6 @@ namespace Infrastructure.ContextDB
                 entity.Property(e => e.ShemMispaha).HasColumnName("shem_mispaha");
 
                 entity.Property(e => e.ShemPrati).HasColumnName("shem_prati");
-
-                entity.Property(e => e.SkSemelMegurim).HasColumnName("sk_semel_megurim");
-
-                entity.Property(e => e.SkSemelYeshuv).HasColumnName("sk_semel_yeshuv");
 
                 entity.Property(e => e.TarichPtira).HasColumnName("tarich_ptira");
             });

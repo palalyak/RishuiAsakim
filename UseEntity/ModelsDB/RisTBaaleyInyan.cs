@@ -11,8 +11,8 @@ namespace Infrastructure.Models
         public string MisparKuma { get; set; }
         public string ShemMispaha { get; set; }
         public string ShemPrati { get; set; }
-        public int? SkSemelMegurim { get; set; }
-        public int? SkSemelYeshuv { get; set; }
+        public int? FkSemelMegurim { get; set; }
+        public int? FkSemelYeshuv { get; set; }
         public int? TarichPtira { get; set; }
         public int CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
