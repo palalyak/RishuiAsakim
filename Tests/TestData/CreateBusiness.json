@@ -1,0 +1,105 @@
+{
+  "id": 0,
+  "name": "api",
+  "liceningNumber": 0,
+  "propertyTaxNum": 0,
+  "highRisk": true,
+  "expeditedPermitNum": 0,
+  "accompanyingPermitNum": 0,
+  "buildingPreservation": true,
+  "dangerousBuilding": true,
+  "commercialCenter": 0,
+  "pliceDistrictId": 0,
+  "accessType": 0,
+  "yardLocationType": 0,
+  "locationDescription": "string",
+  "comments": "string",
+  "propertyTaxAccountNum": 0,
+  "propertyTaxConstractNum": 0,
+  "buildingType": 0,
+  "cellArea": 0,
+  "areaSize_Reported": 0,
+  "parkingSpacesNum": 0,
+  "disabledParkingSpaces": 0,
+  "maxPeopleNumber": 0,
+  "roomsNumber": 0,
+  "seatsNumber": 0,
+  "phone": "0547615497",
+  "phone2": "string",
+  "email": "string",
+  "employeesNum": 0,
+  "primaryEssenceId": 0,
+  "businessDescription": "string",
+  "areaSizePargod": 0,
+  "grocerComment": "string",
+  "height": 0,
+  "licenseRequests": [
+    {
+      "id": 0,
+      "businessId": 0,
+      "requestNumber": 0,
+      "status": 0,
+      "submissionDate": "2023-11-27T14:43:22.108Z",
+      "submissionNumber": 0,
+      "submissionStatus": 0,
+      "submissionStatusDesc": "string",
+      "mainItem": "string",
+      "isEditorRequired": true,
+      "isCanceled": true,
+      "reasons": [
+        "string"
+      ]
+    }
+  ],
+  "stakeholders": [
+    {
+      "name": "string",
+      "id": 0,
+      "stakeholderRequestId": 0,
+      "requestNumber": "string",
+      "requestDate": "2023-11-27T14:43:22.108Z",
+      "stakeholderType": 0,
+      "stakeholderTypeDesc": "string",
+      "email": "string",
+      "city": 0,
+      "cityDesc": "string",
+      "street": 0,
+      "streetDesc": "string",
+      "houseNumber": 0,
+      "phoneNumber1": "string",
+      "phoneNumber2": "string"
+    }
+  ],
+  "items": [
+    {
+      "id": 0,
+      "number": "string",
+      "description": "string",
+      "accelerated": 0,
+      "seats": 0,
+      "statusId": 0
+    }
+  ],
+  "businessAddress": [
+    {
+      "id": 0,
+      "businessId": 0,
+      "addressType": 0,
+      "streetId": 0,
+      "streetDesc": "string",
+      "houseNumber": 0,
+      "entrance": "string",
+      "floor": 0,
+      "postalcode": "string",
+      "apartment": "string",
+      "mailBox": "string",
+      "block": 0,
+      "plot": 0,
+      "industrialSectionId": 0,
+      "industrialSectionDesc": "string",
+      "storeId": 0,
+      "neighborhoodId": 0,
+      "neighborhoodDesc": "string"
+    }
+  ]
+}
