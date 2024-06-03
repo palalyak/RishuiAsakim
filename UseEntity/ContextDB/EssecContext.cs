@@ -23,8 +23,14 @@ namespace Infrastructure.ContextDB
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#if (DEBUG)
                 optionsBuilder.UseSqlServer("Data Source=SQLDEV1902;Initial Catalog=db950_ne;User Id=db950_d;Password=h#649950;TrustServerCertificate=True;");
+
+
+#else
+                optionsBuilder.UseSqlServer("Data Source=SQLTST1902;Initial Catalog=db950_ne;User Id=db950_t;Password=h#247950;TrustServerCertificate=True;");
+
+#endif
             }
         }
 

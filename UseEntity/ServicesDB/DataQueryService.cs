@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Infrastructure.Auth;
 using Infrastructure.ContextDB;
 using Infrastructure.Models;
 using Infrastructure.ModelsAPI.Request;
@@ -233,7 +232,7 @@ namespace Infrastructure.ServicesDB
 
         public RisTEssek CreateEssec(RisTEssek _tikEssecModel)
         {
-            ContextDB.EssecContext _context = new ContextDB.EssecContext();
+            EssecContext _context = new EssecContext();
             {
 
             };

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Infrastructure.Models
+namespace Infrastructure.ModelsDB
 {
     public partial class RisTBakasha
     {
@@ -21,14 +21,21 @@ namespace Infrastructure.Models
         public bool? IsActive { get; set; }
         public bool? Mvutal { get; set; }
         public string Heara { get; set; }
-        //public int? HurcMikdami { get; set; }
+        public string MeidaMikdami { get; set; }
         public int? KSibaIBchiratEssekKodem { get; set; }
-      
         public int? SugBakashaRishaionHeiter { get; set; }
         public bool? SwShinuiMivneBuza { get; set; }
         public bool? SwTatzhir { get; set; }
         public DateTime? TaarichSiumTipul { get; set; }
         public string TeudatZehutMagish { get; set; }
         public int? KodStatusHagasha { get; set; }
+        public bool? SwReforma { get; set; }
+        public DateTime? TrStatusHagasha { get; set; }
+        public decimal? ShetachPargod { get; set; }
+        public DateTime? TaarichPtira { get; set; }
+        public int? FkKodStatusBakashaLehasava { get; set; }
+        public int? MishtameshMevatel { get; set; }
+        public int? SibatBitul { get; set; }
+        public DateTime? TaarichBitul { get; set; }
     }
 }

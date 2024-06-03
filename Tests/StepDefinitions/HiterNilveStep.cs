@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Net;
 using Bogus;
 using Infrastructure;
-using Infrastructure.Auth;
 using Infrastructure.ContextDB;
 using Infrastructure.Models;
 using Infrastructure.ModelsAPI.Request;

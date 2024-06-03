@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Infrastructure.Models
+namespace Infrastructure.ModelsDB
 {
     public partial class RisTBakashaLheiterNilve
     {
-        public int Code { get; set; }
+        public int PkBakashaLheiterNilve { get; set; }
         public int FkCodeEssek { get; set; }
-        public int FkCodeMahuiotLebakasha { get; set; }
+        public int? FkCodeMahuiotLebakasha { get; set; }
         public int? FkSugHeiterNilve { get; set; }
         public DateTime? TarichHagashatBakashaHeiterNilve { get; set; }
         public int? MisparHagashaHeiterNilve { get; set; }
@@ -28,7 +28,7 @@ namespace Infrastructure.Models
         public int? KamutShulchanotBar { get; set; }
         public int? KamutKisaot { get; set; }
         public bool? HimAlChofYam { get; set; }
-        public int? YomSgira { get; set; }
+        public string YomSgira { get; set; }
         public decimal? MerchakMehamidrachaDrisha { get; set; }
         public decimal? MerchakMehamidrachaKviaa { get; set; }
         public bool? IndikatziaLemidrachaShetachPatuach { get; set; }
@@ -38,9 +38,9 @@ namespace Infrastructure.Models
         public bool? SwEsekMerkazKolel5 { get; set; }
         public bool? SwEsekTzirMerkazi { get; set; }
         public bool? SwEsekChotzeTzirMerkazi { get; set; }
-        public string Adifut { get; set; }
+        public int? Adifut { get; set; }
         public int? KodEzor { get; set; }
-        public int? SwMarkolGadolKatan { get; set; }
+        public int? SwMarkolGadolKatanMhasava { get; set; }
         public int? DargaLechishuvHaagra { get; set; }
         public int? MispurMehagrala { get; set; }
         public DateTime? TaarichHagrala { get; set; }
@@ -53,8 +53,30 @@ namespace Infrastructure.Models
         public int CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public int? UpdatedBy { get; set; }
+        public byte[] RowVersion { get; set; }
         public bool? IsActive { get; set; }
         public bool? Mevutal { get; set; }
         public string Michsholim { get; set; }
+        public string TeudatZehutMagish { get; set; }
+        public int? MerchakChazit { get; set; }
+        public int? MerchakSmol { get; set; }
+        public int? MerchakYamin { get; set; }
+        public int? OrechChazit { get; set; }
+        public int? OrechSmol { get; set; }
+        public int? OrechYamin { get; set; }
+        public int? RochavChazit { get; set; }
+        public int? RochavSmol { get; set; }
+        public int? RochavYamin { get; set; }
+        public int? SugTarshim { get; set; }
+        public bool? HimBakashatHidush { get; set; }
+        public int? PkSevevMarkolim { get; set; }
+        public bool? HaskamaLetoranut { get; set; }
+        public int? MakomBeAgrlatHamarkolim { get; set; }
+        public decimal? ShetachMechiraBeHagasha { get; set; }
+        public int? FkKodEzorPikuachIroni { get; set; }
+        public int? FkMisparEzorMarkolim { get; set; }
+        public int MisparBakashaLeheiterNilve { get; set; }
+        public int? FkKodStatusBakashaLehasava { get; set; }
+        public int? FkStatusBakashaMeasava { get; set; }
     }
 }

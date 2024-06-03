@@ -9,9 +9,13 @@
 Scenario: הכנת_הודעה_באירוע_הפצה_01
 	Given valid access token
 	* default tik rishuy with parameters for mahut: 1, 3, 7, 0, 10
-	When create draft license with parameters: 8, "2023-12-29T10:00:00.100Z", "2033-12-29T10:00:00.100Z", 7
-	Given run Ser028 create additional permit with parameters: 1, 0, 25, 1
-	Given run Ser029 permit update with parameters: 1
+	#When create draft license with parameters: 8, "2013-12-29T10:00:00.100Z", "2033-12-29T10:00:00.100Z", 7
+	Given run Ser028 create additional permit with parameters: 2, 0, 25, 1
+	#Given run Ser029 permit update with parameters: 1
+	#Then Ser029 response description should be 'null'
+
+	Given update objects creation date '-00-00-11T00:00', 'hiter_nilve'
+	* update objects creation date '-00-00-30T00:00', 'essek'
 
 
 # Ser029 עדכון היתר נלווה   

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Models;
+using Infrastructure.ModelsDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -38,15 +38,27 @@ namespace Infrastructure.ContextDB
         {
             modelBuilder.Entity<RisTBakashaLheiterNilve>(entity =>
             {
-                entity.HasKey(e => e.Code);
+                entity.HasKey(e => e.PkBakashaLheiterNilve);
 
                 entity.ToTable("ris_t_bakasha_lheiter_nilve");
 
+                entity.HasIndex(e => e.PkSevevMarkolim, "IX_ris_t_bakasha_lheiter_nilve_Pk_sevev_markolim");
+
                 entity.HasIndex(e => e.FkCodeMahuiotLebakasha, "IX_ris_t_bakasha_lheiter_nilve_fk_code_mahuiot_lebakasha");
+
+                entity.HasIndex(e => e.FkKodStatusBakashaLehasava, "IX_ris_t_bakasha_lheiter_nilve_fk_kod_status_bakasha_lehasava");
+
+                entity.HasIndex(e => e.FkMisparEzorMarkolim, "IX_ris_t_bakasha_lheiter_nilve_fk_mispar_ezor_markolim");
+
+                entity.HasIndex(e => e.FkStatusBakasha, "IX_ris_t_bakasha_lheiter_nilve_fk_status_bakasha");
+
+                entity.HasIndex(e => e.FkStatusBakashaMeasava, "IX_ris_t_bakasha_lheiter_nilve_fk_status_bakasha_measava");
 
                 entity.HasIndex(e => e.FkSugHeiterNilve, "IX_ris_t_bakasha_lheiter_nilve_fk_sug_heiter_nilve");
 
-                entity.Property(e => e.Code).HasColumnName("code");
+                entity.HasIndex(e => e.SugTarshim, "IX_ris_t_bakasha_lheiter_nilve_sug_tarshim");
+
+                entity.Property(e => e.PkBakashaLheiterNilve).HasColumnName("pk_bakasha_lheiter_nilve");
 
                 entity.Property(e => e.Adifut).HasColumnName("adifut");
 
@@ -62,11 +74,25 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.FkCodeMahuiotLebakasha).HasColumnName("fk_code_mahuiot_lebakasha");
 
-                entity.Property(e => e.FkStatusBakasha).HasColumnName("fk_status_bakasha");
+                entity.Property(e => e.FkKodEzorPikuachIroni).HasColumnName("fk_kod_ezor_pikuach_ironi");
+
+                entity.Property(e => e.FkKodStatusBakashaLehasava).HasColumnName("fk_kod_status_bakasha_lehasava");
+
+                entity.Property(e => e.FkMisparEzorMarkolim).HasColumnName("fk_mispar_ezor_markolim");
+
+                entity.Property(e => e.FkStatusBakasha)
+                    .HasColumnName("fk_status_bakasha")
+                    .HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.FkStatusBakashaMeasava).HasColumnName("fk_status_bakasha_measava");
 
                 entity.Property(e => e.FkSugHeiterNilve).HasColumnName("fk_sug_heiter_nilve");
 
+                entity.Property(e => e.HaskamaLetoranut).HasColumnName("haskama_letoranut");
+
                 entity.Property(e => e.HimAlChofYam).HasColumnName("him_al_chof_yam");
+
+                entity.Property(e => e.HimBakashatHidush).HasColumnName("him_bakashat_hidush");
 
                 entity.Property(e => e.IndikatziaLemidrachaShetachPatuach).HasColumnName("indikatzia_lemidracha_shetach_patuach");
 
@@ -86,6 +112,10 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.KodEzor).HasColumnName("kod_ezor");
 
+                entity.Property(e => e.MakomBeAgrlatHamarkolim).HasColumnName("makom_be_agrlat_hamarkolim");
+
+                entity.Property(e => e.MerchakChazit).HasColumnName("merchak_chazit");
+
                 entity.Property(e => e.MerchakMehamidrachaDrisha)
                     .HasColumnType("decimal(18, 2)")
                     .HasColumnName("merchak_mehamidracha_drisha");
@@ -94,13 +124,38 @@ namespace Infrastructure.ContextDB
                     .HasColumnType("decimal(18, 2)")
                     .HasColumnName("merchak_mehamidracha_kviaa");
 
+                entity.Property(e => e.MerchakSmol).HasColumnName("merchak_smol");
+
+                entity.Property(e => e.MerchakYamin).HasColumnName("merchak_yamin");
+
                 entity.Property(e => e.Mevutal).HasColumnName("mevutal");
 
                 entity.Property(e => e.Michsholim).HasColumnName("michsholim");
 
+                entity.Property(e => e.MisparBakashaLeheiterNilve).HasColumnName("mispar_bakasha_leheiter_nilve");
+
                 entity.Property(e => e.MisparHagashaHeiterNilve).HasColumnName("mispar_hagasha_heiter_nilve");
 
                 entity.Property(e => e.MispurMehagrala).HasColumnName("mispur_mehagrala");
+
+                entity.Property(e => e.OrechChazit).HasColumnName("orech_chazit");
+
+                entity.Property(e => e.OrechSmol).HasColumnName("orech_smol");
+
+                entity.Property(e => e.OrechYamin).HasColumnName("orech_yamin");
+
+                entity.Property(e => e.PkSevevMarkolim).HasColumnName("Pk_sevev_markolim");
+
+                entity.Property(e => e.RochavChazit).HasColumnName("rochav_chazit");
+
+                entity.Property(e => e.RochavSmol).HasColumnName("rochav_smol");
+
+                entity.Property(e => e.RochavYamin).HasColumnName("rochav_yamin");
+
+                entity.Property(e => e.RowVersion)
+                    .IsRequired()
+                    .IsRowVersion()
+                    .IsConcurrencyToken();
 
                 entity.Property(e => e.ShaaHagrala).HasColumnName("shaa_hagrala");
 
@@ -120,7 +175,13 @@ namespace Infrastructure.ContextDB
                     .HasColumnType("decimal(18, 2)")
                     .HasColumnName("shetach_haheiter_kviaa");
 
+                entity.Property(e => e.ShetachMechiraBeHagasha)
+                    .HasColumnType("decimal(18, 2)")
+                    .HasColumnName("shetach_mechira_be_hagasha");
+
                 entity.Property(e => e.SibatBitol).HasColumnName("sibat_bitol");
+
+                entity.Property(e => e.SugTarshim).HasColumnName("sug_tarshim");
 
                 entity.Property(e => e.SwEsekChotzeTzirMerkazi).HasColumnName("sw_esek_chotze_tzir_merkazi");
 
@@ -132,7 +193,7 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.SwHaskamaLetoranut).HasColumnName("sw_haskama_letoranut");
 
-                entity.Property(e => e.SwMarkolGadolKatan).HasColumnName("sw_markol_gadol_katan");
+                entity.Property(e => e.SwMarkolGadolKatanMhasava).HasColumnName("sw_markol_gadol_katan_mhasava");
 
                 entity.Property(e => e.TaarichBitol).HasColumnName("taarich_bitol");
 
@@ -150,8 +211,16 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.TarichStatusBakasha).HasColumnName("tarich_status_bakasha");
 
-                entity.Property(e => e.YomSgira).HasColumnName("yom_sgira");
+                entity.Property(e => e.TeudatZehutMagish).HasColumnName("teudat_zehut_magish");
+
+                entity.Property(e => e.YomSgira)
+                    .HasMaxLength(1)
+                    .HasColumnName("yom_sgira");
             });
+
+            modelBuilder.HasSequence<int>("AdditionalPermitNumberSeq");
+
+            modelBuilder.HasSequence<int>("CallNumberSeq");
 
             OnModelCreatingPartial(modelBuilder);
         }

@@ -4,10 +4,10 @@ using System.Net;
 using System.Reflection;
 using Bogus;
 using Infrastructure;
-using Infrastructure.Auth;
 using Infrastructure.ContextDB;
 using Infrastructure.Models;
 using Infrastructure.ModelsAPI.Request;
+using Infrastructure.ModelsDB;
 using Infrastructure.ServicesDB;
 using Infrastructure.Utility;
 using Microsoft.Extensions.Configuration;
@@ -451,6 +451,10 @@ namespace Tests.StepDefinitions
                             }
 
                             RisTHeiterNilve _hiterNilveModel = query.GetHeiterNilveByBakasha(_bakashotHiterCode[i]);
+                            if (_hiterNilveModel == null)
+                            {
+                                continue;
+                            }
                             _hiterNilveModel.CreatedDate = HandleContent.CalculateTimeSet(timeSet, _hiterNilveModel.CreatedDate);
                             _hiterNilveModel.TaarichMin = HandleContent.CalculateTimeSet(timeSet, _hiterNilveModel.TaarichMin);
                             _hiterNilveModel.TaarichMax = HandleContent.CalculateTimeSet(timeSet, _hiterNilveModel.TaarichMax);
