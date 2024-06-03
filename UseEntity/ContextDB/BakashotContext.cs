@@ -71,7 +71,7 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.MisparHagasha).HasColumnName("mispar_hagasha");
 
-                entity.Property(e => e.MisparSevevMarkolim).HasColumnName("mispar_sevev_markolim");
+                
 
                 entity.Property(e => e.Mvutal).HasColumnName("mvutal");
 

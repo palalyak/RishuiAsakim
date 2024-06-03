@@ -23,7 +23,7 @@ namespace Infrastructure.Models
         public string Heara { get; set; }
         //public int? HurcMikdami { get; set; }
         public int? KSibaIBchiratEssekKodem { get; set; }
-        public int? MisparSevevMarkolim { get; set; }
+      
         public int? SugBakashaRishaionHeiter { get; set; }
         public bool? SwShinuiMivneBuza { get; set; }
         public bool? SwTatzhir { get; set; }

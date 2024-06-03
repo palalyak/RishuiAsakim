@@ -39,7 +39,7 @@ namespace Infrastructure.ModelsAPI.Request
         public int quantityBarTable { get; set; }
         public int quantityChairs { get; set; }
         public bool isOnBeach { get; set; }
-        public int closeDay { get; set; }
+        public string closeDay { get; set; }
         public int requestDistanceSidewalk { get; set; }
         public int determinedDistanceSidewalk { get; set; }
         public bool indicationOpenAreaSidewalk { get; set; }

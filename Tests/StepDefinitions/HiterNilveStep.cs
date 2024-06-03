@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Globalization;
 using System.Net;
 using Bogus;
@@ -78,7 +78,7 @@ namespace Tests.StepDefinitions
                         indicationOpenAreaSidewalk = true,
                         indicationBuildingAreaDetail = true,
                         statusDate = currentTime,   
-                        closeDay = 1,
+                        closeDay = "×",
                       
 
                         isRequestRenew = (sibatBakasha == 45),
@@ -327,7 +327,7 @@ namespace Tests.StepDefinitions
 
         private void GetHiterTeken(string sugHiter, string param)
         {
-            string paramName = "ìéìä";
+            string paramName = "Ã¬Ã©Ã¬Ã¤";
             string paramValue = "TkufatHiterMaxd";
 
             var paramTable = DataQueryService.GetSystemParametersContentDB(sugHiter, param);
@@ -420,7 +420,7 @@ namespace Tests.StepDefinitions
 
             _hiterNilveModel = query.GetHeiterNilve(codHiter);
             _hiterNilveModel.Should().NotBeNull();
-            _hiterNilveModel.TaarichMax.Should().NotBeNull(); // æä úàøéê ñéåí úå÷ó äéúø
+            _hiterNilveModel.TaarichMax.Should().NotBeNull(); // Ã¦Ã¤ ÃºÃ Ã¸Ã©Ãª Ã±Ã©Ã¥Ã­ ÃºÃ¥Ã·Ã³ Ã¤Ã©ÃºÃ¸
             DateTime taarichMax = (DateTime)_hiterNilveModel.TaarichMax;
 
             RenewAdditionalPermitReq model = new RenewAdditionalPermitReq();
