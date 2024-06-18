@@ -7,13 +7,16 @@ using Infrastructure;
 using Infrastructure.ContextDB;
 using Infrastructure.Models;
 using Infrastructure.ModelsAPI.Request;
+using Infrastructure.ModelsAPI.Response;
 using Infrastructure.ModelsDB;
 using Infrastructure.ServicesDB;
 using Infrastructure.Utility;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
+using TestProject2;
 
 namespace Tests.StepDefinitions
 {
@@ -79,6 +82,7 @@ namespace Tests.StepDefinitions
              
             var randomNum = HandleContent.GetRandomNumber(111111111111, 9999999999999).ToString();
             _tikEssecModel.MisRishuiEsek = HandleContent.GetRandomNumber(1000000, 999999999).ToString();
+           
             _tikEssecModel.CreatedBy = 1;
             _tikEssecModel.PkCodeEssek = 0;
 
@@ -111,12 +115,14 @@ namespace Tests.StepDefinitions
                 _ktovetEssekModel.SugKtovet = i;
                 _ktovetEssekModel.SemelRechov = i == 1 ? 3675 : rechov;
                 _ktovetEssekModel.KodBait = bait;
-                _ktovetEssekModel.Knisa = "à";
-                _ktovetEssekModel.KodKoma = 1;
+                _ktovetEssekModel.Knisa = HandleContent.GetRandomNumber(1, 10).ToString();
+                _ktovetEssekModel.KodKoma = (int)HandleContent.GetRandomNumber(1, 4);
                 _ktovetEssekModel.MisparShchuna = 1;
                 _ktovetEssekModel.Dira = "666";
                 _ktovetEssekModel.Gush = 1;
                 _ktovetEssekModel.Helka = 1;
+                
+                _ktovetEssekModel.Mikud = HandleContent.GetRandomNumber(1000000, 9999999).ToString();
 
                 _ktovetEssekModel.TaDoar = taDoarNum;
                 HandleContent.PrintObjectProperties(_ktovetEssekModel);
@@ -139,7 +145,7 @@ namespace Tests.StepDefinitions
             _bakashaModel.CreatedDate = dateCreation;
             _bakashaModel.KodStatusHabakasha = kodStatusBakasha;
             _bakashaModel.PkCodeEssek = _tikEssecModel.PkCodeEssek;
-
+        
             _bakashaModelList.Add(_bakashaModel);
             _bakashaModel = query.CreateBakasha(_bakashaModel);
             scenarioContext["BakashaModel"] = _bakashaModel;
@@ -258,6 +264,22 @@ namespace Tests.StepDefinitions
                 for (int b = 0; b < _sugBaalInyan.Count; b++)
                 {
                     _baaleyInyanModel = fakeDataGenerator.GenerateFakeClassData<RisTBaaleyInyan>();
+                    _baaleyInyanModel.PkMezaheBaalInyan = HandleContent.GetRandomNumber(100000000, 999999999).ToString();
+                    _baaleyInyanModel.MisparKnisa = HandleContent.GetRandomNumber(1, 10).ToString();
+                    _baaleyInyanModel.MisparKuma = HandleContent.GetRandomNumber(1, 3).ToString();
+                    _baaleyInyanModel.MisparBait = (int)HandleContent.GetRandomNumber(1, 257);
+                    _baaleyInyanModel.FkSemelMegurim =
+                                                    b == 0 ? 972 :
+                                                    b == 1 ? 434 :
+                                                    b == 2 ? 3546 :
+                                                    b == 3 ? 2417 :
+                                                    1177;
+                    _baaleyInyanModel.FkSemelYeshuv =
+                                                    b == 0 ? 9934 :
+                                                    b == 1 ? 1220 :
+                                                    b == 2 ? 679 :
+                                                    b == 3 ? 652 :
+                                                    9815;
                     _baaleyInyanModel = query.CreateBaalInyan(_baaleyInyanModel);
                     _baaaleyInyanList.Add(_baaleyInyanModel);
                 }
@@ -327,6 +349,76 @@ namespace Tests.StepDefinitions
             WhenMahuyotLebakashaWithParameters(numOfEntity, kodMaslul, kodMahutRashit);
             WhenTahananotMeashrotForAllMahuyotWithParameter(daysBack);
             WhenSetOfAllTypesOfBaaleyInyan();
+        }
+
+        [Given(@"default tik rishuy with parameters for api mahut: (.*), (.*), (.*)")]
+        public void GivenDefaultTikRishuyWithParametersForApiMahut(int numOfEntity=1, int kodMaslul=3, int kodMahutRashit=1)
+        {
+            NewEssekWithParameters();
+            WhenBakashaWithParameters();
+            CreateMahutBakashaAndTahanotAPI(numOfEntity, kodMaslul, kodMahutRashit);
+            WhenSetOfAllTypesOfBaaleyInyan();
+        }
+
+        private void CreateMahutBakashaAndTahanotAPI(int numOfEntity, int kodMaslul, int kodMahutRashit)
+        {
+            for (int m = 0; m < numOfEntity; m++)
+            {
+                CreateRequestItemReq model = new CreateRequestItemReq
+                {
+
+                    requestId = (int)scenarioContext["BakashaCode"],
+                    businessId = (int)scenarioContext["EssekID"],
+                    pathId = kodMaslul,
+                    newProgramRequired = true,
+
+                    isMainItem = (m == 0),
+                    itemId = (m == 0) ? kodMahutRashit : 104200,
+                    isAddingDone = (m != 0),
+
+                    areaSlots = new Areaslot[1]
+                    {
+                        new Areaslot
+                        {
+                            structureNumber = 10,
+                            level = 20, 
+                            floor = 33,
+                            height = 40,
+                            slotPurposeCode = 50,
+                            slotArea = 60,
+                            crowdAllowance = 70
+                        }
+                    }
+                };
+
+                var _response = _api.CreateRequestItemReq(model);
+                var content = HandleContent.GetContent<CodeRes>(_response);
+                content.Should().NotBeNull();
+
+                int codeParit = (int)content.data;
+                scenarioContext["CodeParit"] = codeParit;
+                scenarioContext["KodMahutRashit"] = codeParit;
+                CreateTahanotAPI(codeParit);
+            }
+        }
+        private void CreateTahanotAPI(int codeParit)
+        {
+            for (int i = 0; i <= 5; i++)
+            {
+
+                CreateApprovingStationReq model = new CreateApprovingStationReq
+                {
+                    requestItemId = codeParit,
+                    stationStatus = 1,
+                    stationType = (i == 0) ? 1 :
+                      (i == 1) ? 2 :
+                      (i == 2) ? 3 :
+                      (i == 3) ? 15 :
+                      (i == 4) ? 61 : 4
+            };
+                _api.CreateApprovingStartion(model);
+            }
+
         }
 
         [Given(@"tik rishuy for GIS: (.*), (.*), (.*), (.*), (.*), (.*)")]

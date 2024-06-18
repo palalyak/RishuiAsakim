@@ -27,6 +27,8 @@ namespace Infrastructure
         RestResponse RenewAdditionalPermit<T>(T payload) where T : class;
         RestResponse GetGISLayer<T>(T payload) where T : class;
         RestResponse ApproveAdditionalPermit<T>(T payload) where T : class;
+        RestResponse CreateRequestItemReq<T>(T payload) where T : class;
+        RestResponse CreateApprovingStartion<T>(T payload) where T : class;
 
 
     }

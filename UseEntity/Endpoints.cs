@@ -34,6 +34,8 @@ namespace Infrastructure
         public static readonly string FREE_CALCULATION_FOR_ADDITIONAL_PERMIT = "LicenseService/api/AdditionalPermit/FeeCalculation";
 
         public static readonly string GET_GIS_LAYER = "/CoreService/api/GIS/GetGISLayer";
+        public static readonly string CREATE_REQUEST_ITEM = "/LicenseService/api/Item/CreateRequestItem";
+        public static readonly string CREATE_APPROVING_STATION = "/LicenseService/api/License/CreateApprovingStation";
     }
     
 }

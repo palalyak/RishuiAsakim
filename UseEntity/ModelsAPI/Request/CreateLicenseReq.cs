@@ -12,6 +12,7 @@ namespace Infrastructure.ModelsAPI.Request
         public int requestId { get; set; }
         public int fileType { get; set; }
         public Licenseitem[] licenseItems { get; set; }
+        public int generateType { get; set; }
     }
 
     public class Licenseitem
