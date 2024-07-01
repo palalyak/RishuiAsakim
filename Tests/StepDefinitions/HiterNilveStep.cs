@@ -98,7 +98,9 @@ namespace Tests.StepDefinitions
 
                         requestArea = (int)requestArea,
                         determinedArea = (int)requestArea,
-                        statusId = 1
+                        statusId = 1,
+                        areaId = 1
+                        
                     })
             .Generate();
 

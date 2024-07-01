@@ -83,7 +83,7 @@ namespace Tests.Features
                     "Test"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("הכנת_הודעה_באירוע_הפצה_01", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 9
+#line 10
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -103,24 +103,15 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 10
+#line 11
  testRunner.Given("valid access token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 11
- testRunner.And("default tik rishuy with parameters for api mahut: 2, 2, 407200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
 #line 12
- testRunner.When("create draft license with parameters: 8, \"2013-12-29T10:00:00.100Z\", \"2033-12-29T" +
-                        "10:00:00.100Z\", 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("default tik rishuy with parameters for api mahut: 1, 3, 104200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 13
- testRunner.Given("run Ser028 create additional permit with parameters: 1, 0, 25, 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 15
- testRunner.Given("run Ser029 permit update with parameters: 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 16
-  testRunner.Given("run Ser028 create additional permit with parameters: 2, 0, 25, 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 14
+ testRunner.When("create license in DB: 2, 8, 3,  \"2024-02-06T10:00:00.100Z\", \"2033-01-13T10:00:00." +
+                        "100Z\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -135,7 +126,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "Test"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("הכנת_הודעה_באירוע_הפצה_02", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 29
+#line 42
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -155,25 +146,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 30
+#line 43
  testRunner.Given("valid access token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 31
+#line 44
  testRunner.And("default tik rishuy with parameters for mahut: 1, 2, 407200, 0, 122", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 32
+#line 45
  testRunner.And("run Ser028 create additional permit with parameters: 1, 0, 0.0, 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 33
+#line 46
  testRunner.And("run Ser029 permit update with parameters: 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 34
+#line 47
  testRunner.Then("Ser029 response description should be \'null\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 35
+#line 48
  testRunner.Then("status of HiterNilve in DB: 10", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
+#line 51
  testRunner.When("run ischur hiter nilve 4 times", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
@@ -189,7 +180,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "Test"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("הכנת_הודעה_באירוע_הפצה_03", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
-#line 46
+#line 59
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -209,13 +200,13 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 47
+#line 60
  testRunner.Given("valid access token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 48
+#line 61
  testRunner.And("default tik rishuy", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 49
+#line 62
  testRunner.When("create license in DB: 2, 8, 3,  \"2024-02-06T10:00:00.100Z\", \"2033-01-13T10:00:00." +
                         "100Z\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden

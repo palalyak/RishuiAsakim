@@ -534,6 +534,30 @@ namespace Infrastructure.ServicesDB
             }
             return baaleyInyanModel;
         }
+        public RisTBaaleyInyan GetBaalInyan(string key)
+        {
+            BaaleyInyanContext context = new BaaleyInyanContext();
+
+            try
+            {
+                RisTBaaleyInyan baalInyan = context.RisTBaaleyInyans.Find(key);
+
+                if (baalInyan != null)
+                {
+                    return baalInyan;
+                }
+                else
+                {
+                    Console.WriteLine($"baal Inyan with ID {key} not found.");
+                    return null;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when querying data from the database:" + ex.Message);
+                return null;
+            }
+        }
 
         public void UpdateEssec(RisTEssek tikEssecModel)
         {

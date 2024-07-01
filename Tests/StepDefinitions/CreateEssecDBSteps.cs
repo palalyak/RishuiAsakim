@@ -75,7 +75,7 @@ namespace Tests.StepDefinitions
         }
 
 
-        public void NewEssekWithParameters(decimal areaSize = 10, bool aImMukpa = false, int rechov = 1, int bait = 1)
+        public void NewEssekWithParameters(decimal areaSize = 10, bool aImMukpa = false, int rechov = 31, int bait = 61)
         {
             _tikEssecModel = fakeDataGenerator.GenerateFakeClassData<RisTEssek>();
             _ktovetEssekModel = fakeDataGenerator.GenerateFakeClassData<RisTKtovetEssek>();
@@ -90,7 +90,6 @@ namespace Tests.StepDefinitions
             _tikEssecModel.MsCheshbonChoze = "4193226304252";
             _tikEssecModel.Mukpaa = aImMukpa;
             _tikEssecModel.SugGishaLesek = 2;
-            //_tikEssecModel.KodMerkazMischari = (int)HandleContent.GetRandomNumber(1, 2);
             _tikEssecModel.MisparMekomotChanaya = 100;
             _tikEssecModel.MisparMekomotChanayaNechim = 10;
             _tikEssecModel.MisparAnashim = 300;
@@ -121,7 +120,9 @@ namespace Tests.StepDefinitions
                 _ktovetEssekModel.Dira = "666";
                 _ktovetEssekModel.Gush = 1;
                 _ktovetEssekModel.Helka = 1;
-                
+                _ktovetEssekModel.KodMerkazMischari = 14;
+
+
                 _ktovetEssekModel.Mikud = HandleContent.GetRandomNumber(1000000, 9999999).ToString();
 
                 _ktovetEssekModel.TaDoar = taDoarNum;
@@ -255,6 +256,28 @@ namespace Tests.StepDefinitions
             }
         }
 
+        private void SetCustomBaaleyInyan()
+        {
+            RisTBaaleyInyan model_1 = query.GetBaalInyan("314677014");
+            RisTBaaleyInyan model_2 = query.GetBaalInyan("206220535");
+            RisTBaaleyInyan model_3 = query.GetBaalInyan("301589263");
+            RisTBaaleyInyan model_4 = query.GetBaalInyan("040168361");
+            RisTBaaleyInyan model_5 = query.GetBaalInyan("040516585");
+            RisTBaaleyInyan model_6 = query.GetBaalInyan("333333334");
+            RisTBaaleyInyan model_7 = query.GetBaalInyan("313368219");
+            _baaaleyInyanList.Add(model_1);
+            _baaaleyInyanList.Add(model_2);
+            _baaaleyInyanList.Add(model_3);
+            _baaaleyInyanList.Add(model_4);
+            _baaaleyInyanList.Add(model_5);
+            _baaaleyInyanList.Add(model_6);
+            _baaaleyInyanList.Add(model_7);
+
+            AddsBaaleyInyanBetikEssek(_baaaleyInyanList);
+            AddsBaaleyInyanToBakasha();
+            scenarioContext["BaaleInyanListModel"] = _baaaleyInyanList;
+
+        }
 
         [When(@"(.*) set of all types of Baaley Inyan")]
         public void WhenSetOfAllTypesOfBaaleyInyan(int num = 1)
@@ -280,25 +303,38 @@ namespace Tests.StepDefinitions
                                                     b == 2 ? 679 :
                                                     b == 3 ? 652 :
                                                     9815;
+
+                    //_baaleyInyanModel = CreateCustomBaalim(_baaleyInyanModel, "314677014", "Chava", "Mendelson");
+
                     _baaleyInyanModel = query.CreateBaalInyan(_baaleyInyanModel);
                     _baaaleyInyanList.Add(_baaleyInyanModel);
                 }
             }
 
-            AddsBaaleyInyanBetikEssek();
+
+            AddsBaaleyInyanBetikEssek(_baaaleyInyanList);
             AddsBaaleyInyanToBakasha();
             scenarioContext["BaaleInyanListModel"] = _baaaleyInyanList;
         }
 
-        private void AddsBaaleyInyanBetikEssek()
+
+        private RisTBaaleyInyan CreateCustomBaalim(RisTBaaleyInyan model, string mezaee, string firstName, string lastName)
         {
-            for (int i = 0; i < _baaaleyInyanList.Count; i++)
+            model.PkMezaheBaalInyan = mezaee;
+            model.ShemPrati = firstName;
+            model.ShemMispaha = lastName;
+            return model;
+        }
+
+        private void AddsBaaleyInyanBetikEssek(List<RisTBaaleyInyan> listOfBaaleyInyan)
+        {
+            for (int i = 0; i < listOfBaaleyInyan.Count; i++)
             {
                 _baaleyInyanBeTikModel = fakeDataGenerator.GenerateFakeClassData<RisTxBaaleyInyanBtik>();
                 _baaleyInyanBeTikModel.FkCodeEssek = _tikEssecModel.PkCodeEssek;
                 _baaleyInyanBeTikModel.PkBaaleyInyanBtik = 0;
                 _baaleyInyanBeTikModel.CreatedDate = _bakashaModel.CreatedDate;
-                _baaleyInyanBeTikModel.FkMezaheBaalInyan = _baaaleyInyanList[i].PkMezaheBaalInyan;
+                _baaleyInyanBeTikModel.FkMezaheBaalInyan = listOfBaaleyInyan[i].PkMezaheBaalInyan;
 
                 if (_baaaleyInyanList.Count == 1)
                 {
@@ -310,7 +346,7 @@ namespace Tests.StepDefinitions
                     _baaleyInyanBeTikModel.FkSugBaalInyan = _sugBaalInyan[index];
                 }
 
-                _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{_baaaleyInyanList[i].ShemMispaha}_" +
+                _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
                     $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
 
                 _baaleyInyanBetikList.Add(_baaleyInyanBeTikModel);
@@ -353,11 +389,12 @@ namespace Tests.StepDefinitions
 
         [Given(@"default tik rishuy with parameters for api mahut: (.*), (.*), (.*)")]
         public void GivenDefaultTikRishuyWithParametersForApiMahut(int numOfEntity=1, int kodMaslul=3, int kodMahutRashit=1)
-        {
+        {     
             NewEssekWithParameters();
             WhenBakashaWithParameters();
             CreateMahutBakashaAndTahanotAPI(numOfEntity, kodMaslul, kodMahutRashit);
-            WhenSetOfAllTypesOfBaaleyInyan();
+            //WhenSetOfAllTypesOfBaaleyInyan();
+            SetCustomBaaleyInyan();
         }
 
         private void CreateMahutBakashaAndTahanotAPI(int numOfEntity, int kodMaslul, int kodMahutRashit)
@@ -403,7 +440,7 @@ namespace Tests.StepDefinitions
         }
         private void CreateTahanotAPI(int codeParit)
         {
-            for (int i = 0; i <= 5; i++)
+            for (int i = 0; i <= 1; i++)
             {
 
                 CreateApprovingStationReq model = new CreateApprovingStationReq
