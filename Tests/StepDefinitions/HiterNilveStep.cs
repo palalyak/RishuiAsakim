@@ -92,9 +92,9 @@ namespace Tests.StepDefinitions
                         determinedStartHour = currentTime.ToString("HH:mm"),
 
                         //requestEndHour = currentTime.AddHours(10).ToString("HH:mm"),
-                        requestEndHour = "01:45",
+                        requestEndHour = "01:30",
                         //determinedEndHour = currentTime.AddHours(1).ToString("HH:mm"),
-                        determinedEndHour = "01:45",
+                        determinedEndHour = "00:00",
 
                         requestArea = (int)requestArea,
                         determinedArea = (int)requestArea,

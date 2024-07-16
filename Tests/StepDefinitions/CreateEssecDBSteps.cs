@@ -114,7 +114,7 @@ namespace Tests.StepDefinitions
                 _ktovetEssekModel.SugKtovet = i;
                 _ktovetEssekModel.SemelRechov = i == 1 ? 3675 : rechov;
                 _ktovetEssekModel.KodBait = bait;
-                _ktovetEssekModel.Knisa = HandleContent.GetRandomNumber(1, 10).ToString();
+                _ktovetEssekModel.Knisa = HandleContent.GetRandomNumber(1, 9).ToString();
                 _ktovetEssekModel.KodKoma = (int)HandleContent.GetRandomNumber(1, 4);
                 _ktovetEssekModel.MisparShchuna = 1;
                 _ktovetEssekModel.Dira = "666";
@@ -145,8 +145,7 @@ namespace Tests.StepDefinitions
             _bakashaModel.TaarichHagashatHabakasha = dateCreation;
             _bakashaModel.CreatedDate = dateCreation;
             _bakashaModel.KodStatusHabakasha = kodStatusBakasha;
-            _bakashaModel.PkCodeEssek = _tikEssecModel.PkCodeEssek;
-        
+             _bakashaModel.PkCodeEssek = _tikEssecModel.PkCodeEssek;
             _bakashaModelList.Add(_bakashaModel);
             _bakashaModel = query.CreateBakasha(_bakashaModel);
             scenarioContext["BakashaModel"] = _bakashaModel;
@@ -346,8 +345,18 @@ namespace Tests.StepDefinitions
                     _baaleyInyanBeTikModel.FkSugBaalInyan = _sugBaalInyan[index];
                 }
 
+                //if (i == 0)
+                //{
+                //    _baaleyInyanBeTikModel.DoarElectroni = "alex.palchisky@ness-tech.co.il";
+                //    _baaleyInyanBeTikModel.Telephone1 = "0547613154";
+                //}
+                //else
+                //{
+                //    _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
+                //        $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
+                //}
                 _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
-                    $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
+                        $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
 
                 _baaleyInyanBetikList.Add(_baaleyInyanBeTikModel);
                 _baaleyInyanBeTikModel = query.CreateBaalInyanBeTik(_baaleyInyanBeTikModel);
@@ -393,8 +402,9 @@ namespace Tests.StepDefinitions
             NewEssekWithParameters();
             WhenBakashaWithParameters();
             CreateMahutBakashaAndTahanotAPI(numOfEntity, kodMaslul, kodMahutRashit);
-            //WhenSetOfAllTypesOfBaaleyInyan();
-            SetCustomBaaleyInyan();
+            WhenSetOfAllTypesOfBaaleyInyan();
+
+            //SetCustomBaaleyInyan();
         }
 
         private void CreateMahutBakashaAndTahanotAPI(int numOfEntity, int kodMaslul, int kodMahutRashit)
@@ -418,7 +428,7 @@ namespace Tests.StepDefinitions
                         new Areaslot
                         {
                             structureNumber = 10,
-                            level = 20, 
+                            level = 20,
                             floor = 33,
                             height = 40,
                             slotPurposeCode = 50,
@@ -615,7 +625,10 @@ namespace Tests.StepDefinitions
             {
                 RisTBakashaLheiterNilve _bakashaHiter = query.GetBakashaLheiterNilve(_bakashotHiterCode[i]);
                 _bakashaHiter.TarichStatusBakasha = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.TarichStatusBakasha);
+                _bakashaHiter.TaarichMinDrisha = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.TaarichMinDrisha);
+                _bakashaHiter.TaarichMinKviaa = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.TaarichMinKviaa);
                 _bakashaHiter.TaarichMaxDrisha = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.TaarichMaxDrisha);
+                _bakashaHiter.TaarichMaxKviaa = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.TaarichMaxKviaa);
                 _bakashaHiter.TarichHagashatBakashaHeiterNilve = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.TarichHagashatBakashaHeiterNilve);
                 _bakashaHiter.CreatedDate = HandleContent.CalculateTimeSet(timeSet, _bakashaHiter.CreatedDate);
 

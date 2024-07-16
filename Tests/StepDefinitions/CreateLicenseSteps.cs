@@ -56,7 +56,7 @@ namespace Tests.StepDefinitions
             {
                 requestId = (int)_scenarioContext["BakashaCode"],
                 fileType = fileType,
-                generateType = 1,
+                generateType = 0,
                 licenseItems = new Licenseitem[1]
                  {
             new Licenseitem
