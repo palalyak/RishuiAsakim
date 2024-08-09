@@ -51,7 +51,7 @@ namespace Tests.StepDefinitions
         {
             var essekID = _scenarioContext["EssekID"];
             var paritID = _scenarioContext["KodMahutRashit"];
-
+           
 
             for (int i = 0; i < NumOfIters; i++)
             {

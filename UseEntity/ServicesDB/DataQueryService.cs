@@ -631,6 +631,22 @@ namespace Infrastructure.ServicesDB
             }
             return seruvTotzahaModel;
         }
+
+        public RisTxSibotBakasha CreateSiba(RisTxSibotBakasha _model)
+        {
+            TxSibotBakashaContext context = new TxSibotBakashaContext();
+            try
+            {
+                context.RisTxSibotBakashas.Add(_model);
+                context.SaveChanges();
+                HandleContent.PrintObjectProperties(_model);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Error when saving data to the database:" + ex.Message);
+            }
+            return _model;
+        }
     }
 }
 

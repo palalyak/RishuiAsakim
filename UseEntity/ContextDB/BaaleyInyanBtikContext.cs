@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Models;
+using Infrastructure.ModelsDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -45,6 +45,8 @@ namespace Infrastructure.ContextDB
                 entity.ToTable("ris_tx_baaley_inyan_btik");
 
                 entity.Property(e => e.PkBaaleyInyanBtik).HasColumnName("pk_baaley_inyan_btik");
+
+                entity.Property(e => e.BaaleyInyanRashiBetik).HasColumnName("baaley_inyan_rashi_betik");
 
                 entity.Property(e => e.CreatedDate).HasDefaultValueSql("(getdate())");
 

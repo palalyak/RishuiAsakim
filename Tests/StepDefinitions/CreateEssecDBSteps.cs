@@ -1,4 +1,4 @@
-using System;
+ο»Ώusing System;
 
 using System.Net;
 using System.Reflection;
@@ -85,7 +85,7 @@ namespace Tests.StepDefinitions
            
             _tikEssecModel.CreatedBy = 1;
             _tikEssecModel.PkCodeEssek = 0;
-
+            _tikEssecModel.ShetachMechira = 200;
             _tikEssecModel.MisparHeshbonArnona = randomNum;
             _tikEssecModel.MsCheshbonChoze = "4193226304252";
             _tikEssecModel.Mukpaa = aImMukpa;
@@ -121,7 +121,6 @@ namespace Tests.StepDefinitions
                 _ktovetEssekModel.Gush = 1;
                 _ktovetEssekModel.Helka = 1;
                 _ktovetEssekModel.KodMerkazMischari = 14;
-
 
                 _ktovetEssekModel.Mikud = HandleContent.GetRandomNumber(1000000, 9999999).ToString();
 
@@ -223,7 +222,7 @@ namespace Tests.StepDefinitions
                 {
                     /*
                      * create tahana pnimit and tahana hizonit for all mahuyot.
-                     * if maslul = tatsir or mezuraz alef then status tahana hizonit = μιγιςδ 
+                     * if maslul = tatsir or mezuraz alef then status tahana hizonit = Γ¬Γ©Γ£Γ©Γ²Γ¤ 
                      */
                     _taachanaMeasheretModel = fakeDataGenerator.GenerateFakeClassData<RisTTachanaMeasheret>();
                     _taachanaMeasheretModel.PkCodeTachana = 0;
@@ -257,13 +256,13 @@ namespace Tests.StepDefinitions
 
         private void SetCustomBaaleyInyan()
         {
-            RisTBaaleyInyan model_1 = query.GetBaalInyan("314677014");
-            RisTBaaleyInyan model_2 = query.GetBaalInyan("206220535");
-            RisTBaaleyInyan model_3 = query.GetBaalInyan("301589263");
-            RisTBaaleyInyan model_4 = query.GetBaalInyan("040168361");
-            RisTBaaleyInyan model_5 = query.GetBaalInyan("040516585");
-            RisTBaaleyInyan model_6 = query.GetBaalInyan("333333334");
-            RisTBaaleyInyan model_7 = query.GetBaalInyan("313368219");
+            RisTBaaleyInyan model_1 = query.GetBaalInyan("321689101");
+            RisTBaaleyInyan model_2 = query.GetBaalInyan("315502419");
+            RisTBaaleyInyan model_3 = query.GetBaalInyan("315502419");
+            RisTBaaleyInyan model_4 = query.GetBaalInyan("430451676");
+            RisTBaaleyInyan model_5 = query.GetBaalInyan("315502419");
+            RisTBaaleyInyan model_6 = query.GetBaalInyan("719146341");
+            RisTBaaleyInyan model_7 = query.GetBaalInyan("733306567");
             _baaaleyInyanList.Add(model_1);
             _baaaleyInyanList.Add(model_2);
             _baaaleyInyanList.Add(model_3);
@@ -303,7 +302,7 @@ namespace Tests.StepDefinitions
                                                     b == 3 ? 652 :
                                                     9815;
 
-                    //_baaleyInyanModel = CreateCustomBaalim(_baaleyInyanModel, "314677014", "Chava", "Mendelson");
+                    //_baaleyInyanModel = CreateCustomBaalim(_baaleyInyanModel, "321689101", "ΧΧΧ›Χ΅Χ Χ“Χ¨", "Χ¤ΧΧ¦'Χ™Χ¦Χ§Χ™");
 
                     _baaleyInyanModel = query.CreateBaalInyan(_baaleyInyanModel);
                     _baaaleyInyanList.Add(_baaleyInyanModel);
@@ -343,6 +342,11 @@ namespace Tests.StepDefinitions
                 {
                     int index = i % _sugBaalInyan.Count;
                     _baaleyInyanBeTikModel.FkSugBaalInyan = _sugBaalInyan[index];
+                }
+
+                if(_baaleyInyanBeTikModel.FkSugBaalInyan == 1)
+                {
+                    _baaleyInyanBeTikModel.BaaleyInyanRashiBetik = true;
                 }
 
                 //if (i == 0)
@@ -401,10 +405,19 @@ namespace Tests.StepDefinitions
         {     
             NewEssekWithParameters();
             WhenBakashaWithParameters();
+            SetSibotBakasha();
             CreateMahutBakashaAndTahanotAPI(numOfEntity, kodMaslul, kodMahutRashit);
             WhenSetOfAllTypesOfBaaleyInyan();
 
             //SetCustomBaaleyInyan();
+        }
+
+        private void SetSibotBakasha()
+        {
+            RisTxSibotBakasha model = new RisTxSibotBakasha();
+            model.PkCodeBakasha = _bakashaModel.PkCodeBakasha;
+            model.KodSiba = 1;
+            query.CreateSiba(model);
         }
 
         private void CreateMahutBakashaAndTahanotAPI(int numOfEntity, int kodMaslul, int kodMahutRashit)
@@ -445,7 +458,7 @@ namespace Tests.StepDefinitions
                 int codeParit = (int)content.data;
                 scenarioContext["CodeParit"] = codeParit;
                 scenarioContext["KodMahutRashit"] = codeParit;
-                CreateTahanotAPI(codeParit);
+                //CreateTahanotAPI(codeParit);
             }
         }
         private void CreateTahanotAPI(int codeParit)
@@ -471,9 +484,9 @@ namespace Tests.StepDefinitions
         [Given(@"tik rishuy for GIS: (.*), (.*), (.*), (.*), (.*), (.*)")]
         public void GivenTikRishuyForGISAlef(int sugHaeter, string ezorYafo, string kvuzatMahut, bool haImLefiGIS, int mediniutLayla, bool haImEssekTaunRishuy)
         {
-            // [ris_t_chokim_leiter_laila] χεας ωςϊ δϊημδ ωμ διϊψ μιμδ
-            // [ris_t_shcavot_GIS_ironi] χεας ωςϊ ριεν διϊψ μιμδ ΰν πγψω
-            // [ris_tt_maarechet_parameter].[NightPermitMaxEndHour] χεας ωςϊ ριεν διϊψ μιμδ ΰν πγψω
+            // [ris_t_chokim_leiter_laila] Γ·Γ¥Γ΅Γ² ΓΉΓ²ΓΊ Γ¤ΓΊΓ§Γ¬Γ¤ ΓΉΓ¬ Γ¤Γ©ΓΊΓΈ Γ¬Γ©Γ¬Γ¤
+            // [ris_t_shcavot_GIS_ironi] Γ·Γ¥Γ΅Γ² ΓΉΓ²ΓΊ Γ±Γ©Γ¥Γ­ Γ¤Γ©ΓΊΓΈ Γ¬Γ©Γ¬Γ¤ Γ Γ­ Γ°Γ£ΓΈΓΉ
+            // [ris_tt_maarechet_parameter].[NightPermitMaxEndHour] Γ·Γ¥Γ΅Γ² ΓΉΓ²ΓΊ Γ±Γ©Γ¥Γ­ Γ¤Γ©ΓΊΓΈ Γ¬Γ©Γ¬Γ¤ Γ Γ­ Γ°Γ£ΓΈΓΉ
             // NightPermitMaxEndHour - 05:00
 
             decimal areaSize = 0;
@@ -481,17 +494,17 @@ namespace Tests.StepDefinitions
             int kodMaslul = 3;           
             int rechov = 0, bait = 0;
 
-            int codKvuzatMahut = kvuzatMahut == "μΰ λμμιϊ" ? 104200 :
-                             kvuzatMahut == "λμμιϊ" ? 104102 :
+            int codKvuzatMahut = kvuzatMahut == "Γ¬Γ  Γ«Γ¬Γ¬Γ©ΓΊ" ? 104200 :
+                             kvuzatMahut == "Γ«Γ¬Γ¬Γ©ΓΊ" ? 104102 :
                              throw new Exception("wrong kvuzat mahut");
 
             switch (sugHaeter)
             {
-                // διϊψ μιμδ
+                // Γ¤Γ©ΓΊΓΈ Γ¬Γ©Γ¬Γ¤
                 case 1: 
                     if (mediniutLayla == 1)
                     {
-                        rechov = 2; bait = 27; // μαγιχϊ ωςϊ ριεν εξδεϊ μαγιχϊ ωςϊ δϊημδ
+                        rechov = 2; bait = 27; // Γ¬Γ΅Γ£Γ©Γ·ΓΊ ΓΉΓ²ΓΊ Γ±Γ©Γ¥Γ­ Γ¥Γ®Γ¤Γ¥ΓΊ Γ¬Γ΅Γ£Γ©Γ·ΓΊ ΓΉΓ²ΓΊ Γ¤ΓΊΓ§Γ¬Γ¤
                     }
                     else if (mediniutLayla == 2)
                     {
@@ -517,7 +530,7 @@ namespace Tests.StepDefinitions
                     break;
 
 
-                // διϊψ ωαϊ ιτδ
+                // Γ¤Γ©ΓΊΓΈ ΓΉΓ΅ΓΊ Γ©Γ΄Γ¤
                 case 7:
                     if (ezorYafo == "alef")
                     {

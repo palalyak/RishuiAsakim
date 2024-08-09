@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Infrastructure.Models
+namespace Infrastructure.ModelsDB
 {
     public partial class RisTxBaaleyInyanBtik
     {
@@ -21,5 +21,6 @@ namespace Infrastructure.Models
         public byte[] RowVersion { get; set; }
         public bool? IsActive { get; set; }
         public string StakeholderId1 { get; set; }
+        public bool? BaaleyInyanRashiBetik { get; set; }
     }
 }
