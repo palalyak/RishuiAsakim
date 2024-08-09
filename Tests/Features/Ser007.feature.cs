@@ -109,11 +109,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And("default tik rishuy with parameters for api mahut: 1, 3, 402200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 18
- testRunner.Given("run Ser028 create additional permit with parameters: 2, 0, 100, 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 21
- testRunner.Given("run Ser029 permit update with parameters: 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 15
+ testRunner.When("create draft license with parameters: 8, \"2024-08-01T10:00:00.100Z\", \"2033-12-29T" +
+                        "10:00:00.100Z\", 7", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();

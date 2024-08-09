@@ -256,20 +256,13 @@ namespace Tests.StepDefinitions
 
         private void SetCustomBaaleyInyan()
         {
-            RisTBaaleyInyan model_1 = query.GetBaalInyan("321689101");
-            RisTBaaleyInyan model_2 = query.GetBaalInyan("315502419");
-            RisTBaaleyInyan model_3 = query.GetBaalInyan("315502419");
-            RisTBaaleyInyan model_4 = query.GetBaalInyan("430451676");
-            RisTBaaleyInyan model_5 = query.GetBaalInyan("315502419");
-            RisTBaaleyInyan model_6 = query.GetBaalInyan("719146341");
-            RisTBaaleyInyan model_7 = query.GetBaalInyan("733306567");
-            _baaaleyInyanList.Add(model_1);
-            _baaaleyInyanList.Add(model_2);
-            _baaaleyInyanList.Add(model_3);
-            _baaaleyInyanList.Add(model_4);
-            _baaaleyInyanList.Add(model_5);
-            _baaaleyInyanList.Add(model_6);
-            _baaaleyInyanList.Add(model_7);
+            _baaaleyInyanList.Add(query.GetBaalInyan("323367037"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("430451676"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("719146341"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("733306567"));
 
             AddsBaaleyInyanBetikEssek(_baaaleyInyanList);
             AddsBaaleyInyanToBakasha();
@@ -336,7 +329,7 @@ namespace Tests.StepDefinitions
 
                 if (_baaaleyInyanList.Count == 1)
                 {
-                    _baaleyInyanBeTikModel.FkSugBaalInyan = 4;
+                    _baaleyInyanBeTikModel.FkSugBaalInyan = 1;
                 }
                 else
                 {
@@ -402,14 +395,14 @@ namespace Tests.StepDefinitions
 
         [Given(@"default tik rishuy with parameters for api mahut: (.*), (.*), (.*)")]
         public void GivenDefaultTikRishuyWithParametersForApiMahut(int numOfEntity=1, int kodMaslul=3, int kodMahutRashit=1)
-        {     
+         {     
             NewEssekWithParameters();
             WhenBakashaWithParameters();
             SetSibotBakasha();
             CreateMahutBakashaAndTahanotAPI(numOfEntity, kodMaslul, kodMahutRashit);
-            WhenSetOfAllTypesOfBaaleyInyan();
+            //WhenSetOfAllTypesOfBaaleyInyan();
 
-            //SetCustomBaaleyInyan();
+            SetCustomBaaleyInyan();
         }
 
         private void SetSibotBakasha()

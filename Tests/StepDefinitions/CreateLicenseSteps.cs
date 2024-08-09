@@ -74,6 +74,7 @@ namespace Tests.StepDefinitions
             HandleContent.PrintObjectProperties(licenseDraftModel);
         }
 
+
         [When(@"create seruv in DB with parameters: (.*)")]
         public void WhenCreateSeruvInDBWithParameters(int sugSeruv)
         {
