@@ -256,7 +256,7 @@ namespace Tests.StepDefinitions
 
         private void SetCustomBaaleyInyan()
         {
-            _baaaleyInyanList.Add(query.GetBaalInyan("323367037"));
+            _baaaleyInyanList.Add(query.GetBaalInyan("321689101"));
             //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
             //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
             //_baaaleyInyanList.Add(query.GetBaalInyan("430451676"));
@@ -422,7 +422,8 @@ namespace Tests.StepDefinitions
 
                     requestId = (int)scenarioContext["BakashaCode"],
                     businessId = (int)scenarioContext["EssekID"],
-                    pathId = kodMaslul,
+                    
+                    pathId = (m == 0) ? kodMaslul : 1,
                     newProgramRequired = true,
 
                     isMainItem = (m == 0),
@@ -451,7 +452,7 @@ namespace Tests.StepDefinitions
                 int codeParit = (int)content.data;
                 scenarioContext["CodeParit"] = codeParit;
                 scenarioContext["KodMahutRashit"] = codeParit;
-                //CreateTahanotAPI(codeParit);
+                CreateTahanotAPI(codeParit);
             }
         }
         private void CreateTahanotAPI(int codeParit)
@@ -463,8 +464,8 @@ namespace Tests.StepDefinitions
                 {
                     requestItemId = codeParit,
                     stationStatus = 1,
-                    stationType = (i == 0) ? 1 :
-                      (i == 1) ? 2 :
+                    stationType = (i == 0) ? 3 :
+                      (i == 1) ? 4 :
                       (i == 2) ? 3 :
                       (i == 3) ? 15 :
                       (i == 4) ? 61 : 4
