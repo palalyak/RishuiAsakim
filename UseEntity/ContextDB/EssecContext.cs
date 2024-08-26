@@ -45,7 +45,7 @@ namespace Infrastructure.ContextDB
                 entity.HasIndex(e => e.MisRishuiEsek, "IX_ris_t_essek_Mis_rishui_esek")
                     .IsUnique();
 
-                entity.HasIndex(e => e.KodNafa, "IX_ris_t_essek_kod_nafa");
+                
 
                 entity.Property(e => e.PkCodeEssek).HasColumnName("PK_code__essek");
 
@@ -79,7 +79,7 @@ namespace Infrastructure.ContextDB
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.KodNafa).HasColumnName("kod_nafa");
+                
 
                 entity.Property(e => e.LoTaonRishoi).HasColumnName("lo_taon_rishoi");
 

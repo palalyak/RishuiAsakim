@@ -107,11 +107,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("valid access token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 12
- testRunner.And("default tik rishuy with parameters for api mahut: 2, 2, 407200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
-#line 15
- testRunner.When("create draft license with parameters: 8, \"2024-08-01T10:00:00.100Z\", \"2033-12-29T" +
-                        "10:00:00.100Z\", 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("default tik rishuy with parameters for api mahut: 2, 3, 402100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
             }
             this.ScenarioCleanup();

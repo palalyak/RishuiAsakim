@@ -257,7 +257,7 @@ namespace Tests.StepDefinitions
         private void SetCustomBaaleyInyan()
         {
             _baaaleyInyanList.Add(query.GetBaalInyan("321689101"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
+            //_baaaleyInyanList.Add(query.GetBaalInyan("321689200"));
             //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
             //_baaaleyInyanList.Add(query.GetBaalInyan("430451676"));
             //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
@@ -352,8 +352,10 @@ namespace Tests.StepDefinitions
                 //    _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
                 //        $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
                 //}
-                _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
-                        $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
+                //_baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
+                        //$"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
+
+                _baaleyInyanBeTikModel.DoarElectroni = "Alex.Palchisky@ness-tech.co.il";
 
                 _baaleyInyanBetikList.Add(_baaleyInyanBeTikModel);
                 _baaleyInyanBeTikModel = query.CreateBaalInyanBeTik(_baaleyInyanBeTikModel);
@@ -423,12 +425,20 @@ namespace Tests.StepDefinitions
                     requestId = (int)scenarioContext["BakashaCode"],
                     businessId = (int)scenarioContext["EssekID"],
                     
-                    pathId = (m == 0) ? kodMaslul : 1,
+                    pathId = (m == 0) ? kodMaslul :
+                        (m == 1) ? 2 :
+              (m == 2) ? 3 :
+              4,
+
                     newProgramRequired = true,
 
                     isMainItem = (m == 0),
-                    itemId = (m == 0) ? kodMahutRashit : 104200,
-                    isAddingDone = (m != 0),
+                    itemId = (m == 0) ? kodMahutRashit :
+              (m == 1) ? 1 :
+              (m == 2) ? 2 :
+              3,
+
+                isAddingDone = (m != 0),
 
                     areaSlots = new Areaslot[1]
                     {

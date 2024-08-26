@@ -7,7 +7,7 @@ namespace Infrastructure.Models
     {
         public int PkCodeEssek { get; set; }
         public string TeurMikumHaessek { get; set; }
-        public int? KodNafa { get; set; }
+        //public int? KodNafa { get; set; }
         public string MisparKibuyEsh { get; set; }
         public bool? HozeOArnuna { get; set; }
         public string MisparHeshbonArnona { get; set; }
