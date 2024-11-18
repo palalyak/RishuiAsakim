@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Infrastructure.Models;
+using Infrastructure.ModelsDB;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -45,13 +45,13 @@ namespace Infrastructure.ContextDB
                 entity.HasIndex(e => e.MisRishuiEsek, "IX_ris_t_essek_Mis_rishui_esek")
                     .IsUnique();
 
-                
-
                 entity.Property(e => e.PkCodeEssek).HasColumnName("PK_code__essek");
 
                 entity.Property(e => e.AimMesukan).HasColumnName("aim_mesukan");
 
                 entity.Property(e => e.AimShimur).HasColumnName("aim_shimur");
+
+                entity.Property(e => e.ChofYam).HasColumnName("chof_yam");
 
                 entity.Property(e => e.CodeMahutIkarit).HasColumnName("code_mahut_ikarit");
 
@@ -78,8 +78,6 @@ namespace Infrastructure.ContextDB
                 entity.Property(e => e.IsActive)
                     .IsRequired()
                     .HasDefaultValueSql("((1))");
-
-                
 
                 entity.Property(e => e.LoTaonRishoi).HasColumnName("lo_taon_rishoi");
 
@@ -128,6 +126,8 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.Mukpaa).HasColumnName("mukpaa");
 
+                entity.Property(e => e.NechesIroni).HasColumnName("neches_ironi");
+
                 entity.Property(e => e.RowVersion)
                     .IsRequired()
                     .IsRowVersion()
@@ -151,9 +151,9 @@ namespace Infrastructure.ContextDB
                     .HasColumnType("decimal(18, 2)")
                     .HasColumnName("shetach_mechira");
 
-                entity.Property(e => e.ShetachPargod)
+                entity.Property(e => e.ShetachPargodMeshoar)
                     .HasColumnType("decimal(18, 2)")
-                    .HasColumnName("shetach_pargod");
+                    .HasColumnName("shetach_pargod_meshoar");
 
                 entity.Property(e => e.ShetachShulhanot)
                     .HasColumnType("decimal(18, 2)")
@@ -164,6 +164,10 @@ namespace Infrastructure.ContextDB
                 entity.Property(e => e.SugHakpaa).HasColumnName("sug_hakpaa");
 
                 entity.Property(e => e.SugMivne).HasColumnName("sug_mivne");
+
+                entity.Property(e => e.SwMivneLeshimur).HasColumnName("sw_mivne_leshimur");
+
+                entity.Property(e => e.SwMivneMesukan).HasColumnName("sw_mivne_mesukan");
 
                 entity.Property(e => e.TaarichHakpaa).HasColumnName("taarich_hakpaa");
 
@@ -181,6 +185,8 @@ namespace Infrastructure.ContextDB
 
                 entity.Property(e => e.TikMishtaraAlfa).HasColumnName("tik_mishtara_alfa");
             });
+
+            modelBuilder.HasSequence<int>("BusinessCaseNumberSeq");
 
             OnModelCreatingPartial(modelBuilder);
         }

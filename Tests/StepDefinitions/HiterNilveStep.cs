@@ -82,8 +82,8 @@ namespace Tests.StepDefinitions
 
                         isRequestRenew = (sibatBakasha == 45),
                         submissionDate = currentTime,
-                        requestValidityStartDate = currentTime,
-                        determinedValidityStartDate = currentTime,
+                        requestValidityStartDate = currentTime.AddDays(-1),
+                        determinedValidityStartDate = currentTime.AddDays(-1),
 
                         requestValidityEndDate = currentTime.AddYears(1),
                         determinedValidityEndDate = currentTime.AddYears(1),

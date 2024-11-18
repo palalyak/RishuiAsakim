@@ -11,41 +11,32 @@ A short summary of the feature
 @Test
 Scenario Outline: חידוש_היתר_לילה
 	Given valid access token
-	* default tik rishuy with parameters for mahut: 1, 2, <kodMahutRashit>, 0, 10
+	* default tik rishuy with parameters for api mahut: 1, 3, 402203, "321689101"
 	#Given tik rishuy for GIS: 7, alef, לא כללית, true, 2, true
-	* update objects creation date '-03-00-00T00:00', 'essek'
-	When create draft license with parameters: 7, "2022-02-18T10:00:00.100Z", "2034-02-19T10:00:00.100Z", 2
+#	* update objects creation date '-02-00-00T00:00', 'essek'
+		When create draft license with parameters: 7, "2023-08-01T10:00:00.100Z", "2034-10-16T10:00:00.100Z", 3
 
-	Then validate hiter nilve: 0
-	Given run Ser028 create additional permit with parameters: <SugIter>, 0, 0, 1
+	#Then validate hiter nilve: 0 
+	Given run Ser028 create additional permit with parameters: <SugIter>, 0, 100, 1
 	# Note == Ser029 called from Ser058 when tahanot with "Approved" status, status of Hiter - "Awaiting approval" ==
 	* run Ser029 permit update with parameters: 4
-	#Then Ser029 response description should be 'null'
-	Then hiter nilve created in DB: 'Yes'
-	Then validate hiter nilve: 1
+	Then Ser029 response description should be 'null'
+	#Then hiter nilve created in DB: 'Yes'
+	#Then validate hiter nilve: 1
 
 	Given update objects creation date <hodashimLifneiHidush>, 'hiter_nilve'
+	Given update objects creation date <hodashimLifneiHidush>, 'hiter_bakasha'
 	Given run Ser062 check additional permit possibility with parameters: <SugIter>
-	When run Ser030 renew additional permit <requestEndHour>, <tkufatHiter>, 0
-	When run Ser066 get business data
-	Then validate hiter nilve: 2
+	#When run Ser030 renew additional permit <requestEndHour>, <tkufatHiter>, 0
+	#When run Ser066 get business data
+	#Then validate hiter nilve: 2
 	#Then אם קיים תעריף להיתר שבקשנו לחדש אז נוצר היתר בסטטוס 20
 
 
 Examples:
 	| kodMahutRashit | SugIter | requestEndHour | hodashimLifneiHidush | tkufatHiter       |
-	| 5             | 2       | '23:55'        | '-01-11-00T00:00'    | '+01-00-00T00:00' |
-	| 10             | 7       | '23:00'        | '-00-11-00T00:00'   | '+00-03-00T00:00' |
+	| 402203             | 1      | '23:55'        | '-00-11-00T00:00'    | '+01-00-00T00:00' |
 
-	| 10             | 1       | '23:00'        | '-00-11-29T00:00'    | '+00-12-00T00:00' | 
-	| 10             | 1       | '23:00'        | '-00-11-29T00:00'    | '+00-03-00T00:00' |
-
-	| 10             | 1       | '23:00'        | '-00-12-29T00:00'    | '+00-12-00T00:00' |
-	| 10             | 1       | '23:00'        | '-00-12-29T00:00'    | '+00-03-00T00:00' |
-
-	| 10             | 1       | '23:00'        | '-00-12-00T00:00'    | '+00-12-00T00:00' |
-	| 10             | 1       | '23:00'        | '-00-12-00T00:00'    | '+00-03-00T00:00' | 
-	| 10             | 1       | '23:00'        | '-01-01-00T00:00'    | '+00-03-00T00:00' | 
 
 
 

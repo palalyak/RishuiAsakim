@@ -58,15 +58,15 @@ namespace Infrastructure.ModelsDB
         public bool? Mevutal { get; set; }
         public string Michsholim { get; set; }
         public string TeudatZehutMagish { get; set; }
-        public int? MerchakChazit { get; set; }
-        public int? MerchakSmol { get; set; }
-        public int? MerchakYamin { get; set; }
-        public int? OrechChazit { get; set; }
-        public int? OrechSmol { get; set; }
-        public int? OrechYamin { get; set; }
-        public int? RochavChazit { get; set; }
-        public int? RochavSmol { get; set; }
-        public int? RochavYamin { get; set; }
+        public decimal? MerchakChazit { get; set; }
+        public decimal? MerchakSmol { get; set; }
+        public decimal? MerchakYamin { get; set; }
+        public decimal? OrechChazit { get; set; }
+        public decimal? OrechSmol { get; set; }
+        public decimal? OrechYamin { get; set; }
+        public decimal? RochavChazit { get; set; }
+        public decimal? RochavSmol { get; set; }
+        public decimal? RochavYamin { get; set; }
         public int? SugTarshim { get; set; }
         public bool? HimBakashatHidush { get; set; }
         public int? PkSevevMarkolim { get; set; }

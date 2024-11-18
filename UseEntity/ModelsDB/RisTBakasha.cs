@@ -31,7 +31,7 @@ namespace Infrastructure.ModelsDB
         public int? KodStatusHagasha { get; set; }
         public bool? SwReforma { get; set; }
         public DateTime? TrStatusHagasha { get; set; }
-        public decimal? ShetachPargod { get; set; }
+        public decimal? ShetachPargodMeshoar { get; set; }
         public DateTime? TaarichPtira { get; set; }
         public int? FkKodStatusBakashaLehasava { get; set; }
         public int? MishtameshMevatel { get; set; }

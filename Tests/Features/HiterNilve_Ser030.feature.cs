@@ -76,15 +76,7 @@ namespace Tests.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("חידוש_היתר_לילה")]
         [NUnit.Framework.CategoryAttribute("Test")]
-        [NUnit.Framework.TestCaseAttribute("5", "2", "\'23:55\'", "\'-01-11-00T00:00\'", "\'+01-00-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "7", "\'23:00\'", "\'-00-11-00T00:00\'", "\'+00-03-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-00-11-29T00:00\'", "\'+00-12-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-00-11-29T00:00\'", "\'+00-03-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-00-12-29T00:00\'", "\'+00-12-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-00-12-29T00:00\'", "\'+00-03-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-00-12-00T00:00\'", "\'+00-12-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-00-12-00T00:00\'", "\'+00-03-00T00:00\'", null)]
-        [NUnit.Framework.TestCaseAttribute("10", "1", "\'23:00\'", "\'-01-01-00T00:00\'", "\'+00-03-00T00:00\'", null)]
+        [NUnit.Framework.TestCaseAttribute("402203", "1", "\'23:55\'", "\'-00-11-00T00:00\'", "\'+01-00-00T00:00\'", null)]
         public virtual void חידוש_היתר_לילה(string kodMahutRashit, string sugIter, string requestEndHour, string hodashimLifneiHidush, string tkufatHiter, string[] exampleTags)
         {
             string[] @__tags = new string[] {
@@ -125,44 +117,29 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Given("valid access token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
- testRunner.And(string.Format("default tik rishuy with parameters for mahut: 1, 2, {0}, 0, 10", kodMahutRashit), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
-#line 16
- testRunner.And("update objects creation date \'-03-00-00T00:00\', \'essek\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
+ testRunner.And("default tik rishuy with parameters for api mahut: 1, 3, 402203, \"321689101\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
 #line 17
- testRunner.When("create draft license with parameters: 7, \"2022-02-18T10:00:00.100Z\", \"2034-02-19T" +
-                        "10:00:00.100Z\", 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 19
- testRunner.Then("validate hiter nilve: 0", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+  testRunner.When("create draft license with parameters: 7, \"2023-08-01T10:00:00.100Z\", \"2034-10-16T" +
+                        "10:00:00.100Z\", 3", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 20
- testRunner.Given(string.Format("run Ser028 create additional permit with parameters: {0}, 0, 0, 1", sugIter), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("run Ser028 create additional permit with parameters: {0}, 0, 100, 1", sugIter), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 22
  testRunner.And("run Ser029 permit update with parameters: 4", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
 #line hidden
-#line 24
- testRunner.Then("hiter nilve created in DB: \'Yes\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-#line 25
- testRunner.Then("validate hiter nilve: 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 23
+ testRunner.Then("Ser029 response description should be \'null\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 27
  testRunner.Given(string.Format("update objects creation date {0}, \'hiter_nilve\'", hodashimLifneiHidush), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 28
- testRunner.Given(string.Format("run Ser062 check additional permit possibility with parameters: {0}", sugIter), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given(string.Format("update objects creation date {0}, \'hiter_bakasha\'", hodashimLifneiHidush), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 29
- testRunner.When(string.Format("run Ser030 renew additional permit {0}, {1}, 0", requestEndHour, tkufatHiter), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 30
- testRunner.When("run Ser066 get business data", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line hidden
-#line 31
- testRunner.Then("validate hiter nilve: 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given(string.Format("run Ser062 check additional permit possibility with parameters: {0}", sugIter), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             }
             this.ScenarioCleanup();

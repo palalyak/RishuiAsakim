@@ -89,9 +89,9 @@ namespace Infrastructure.ContextDB
                     .IsRowVersion()
                     .IsConcurrencyToken();
 
-                entity.Property(e => e.ShetachPargod)
+                entity.Property(e => e.ShetachPargodMeshoar)
                     .HasColumnType("decimal(18, 2)")
-                    .HasColumnName("shetach_pargod");
+                    .HasColumnName("shetach_pargod_meshoar");
 
                 entity.Property(e => e.SibatBitul).HasColumnName("sibat_bitul");
 
@@ -119,6 +119,8 @@ namespace Infrastructure.ContextDB
             modelBuilder.HasSequence<int>("AdditionalPermitNumberSeq");
 
             modelBuilder.HasSequence<int>("CallNumberSeq");
+
+            modelBuilder.HasSequence<int>("LicenseNumberSeq");
 
             OnModelCreatingPartial(modelBuilder);
         }

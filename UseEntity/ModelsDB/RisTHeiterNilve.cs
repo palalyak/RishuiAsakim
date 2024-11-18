@@ -24,7 +24,7 @@ namespace Infrastructure.Models
         public int? UpdatedBy { get; set; }
         public byte[] RowVersion { get; set; }
         public bool? IsActive { get; set; }
-        public decimal? MerchakMehamidracha { get; set; }
+        public int? MerchakMehamidracha { get; set; }
         public bool? Mevutal { get; set; }
         public int? FkSugHeiterNilve { get; set; }
     }

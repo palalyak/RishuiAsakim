@@ -82,7 +82,7 @@ namespace Tests.StepDefinitions
              
             var randomNum = HandleContent.GetRandomNumber(111111111111, 9999999999999).ToString();
             _tikEssecModel.MisRishuiEsek = HandleContent.GetRandomNumber(1000000, 999999999).ToString();
-           
+            //_tikEssecModel.ShemEssek = "בית היופי ג'יזל";
             _tikEssecModel.CreatedBy = 1;
             _tikEssecModel.PkCodeEssek = 0;
             _tikEssecModel.ShetachMechira = 200;
@@ -98,7 +98,7 @@ namespace Tests.StepDefinitions
             _tikEssecModel.ShetachHaessekHamadud = areaSize;
             _tikEssecModel.ShetachHaessekHameduvach = areaSize;
             _tikEssecModel.ShetachShulhanot = 0;
-            _tikEssecModel.ShetachPargod = 0;
+            _tikEssecModel.ShetachPargodMeshoar = 0;
             _tikEssecModel.LoTaonRishoi = false;
 
             HandleContent.PrintObjectProperties(_tikEssecModel);
@@ -254,15 +254,9 @@ namespace Tests.StepDefinitions
             }
         }
 
-        private void SetCustomBaaleyInyan()
+        private void SetCustomBaaleyInyan(string tz)
         {
-            _baaaleyInyanList.Add(query.GetBaalInyan("321689101"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("321689200"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("430451676"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("315502419"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("719146341"));
-            //_baaaleyInyanList.Add(query.GetBaalInyan("733306567"));
+            _baaaleyInyanList.Add(query.GetBaalInyan(tz));
 
             AddsBaaleyInyanBetikEssek(_baaaleyInyanList);
             AddsBaaleyInyanToBakasha();
@@ -319,6 +313,15 @@ namespace Tests.StepDefinitions
 
         private void AddsBaaleyInyanBetikEssek(List<RisTBaaleyInyan> listOfBaaleyInyan)
         {
+            var contactInfo = new Dictionary<string, (string Email, string Phone)>
+{
+    { "321689101", ("alex.Palchisky@ness-tech.co.il", "0547613154") },
+    { "213733637", ("yuval.buchnik@ness-tech.co.il", "0528981436") },
+    { "322013970", ("alekseev_o@mail.tel-aviv.gov.il", "0547123456") },
+    { "034101212", ("gutman_y@mail.tel-aviv.gov.il", "054-636-6740") },
+                { "207876327" , ("rachel.zaltzman@ness-tech.co.il", "054123456") }
+};
+
             for (int i = 0; i < listOfBaaleyInyan.Count; i++)
             {
                 _baaleyInyanBeTikModel = fakeDataGenerator.GenerateFakeClassData<RisTxBaaleyInyanBtik>();
@@ -342,20 +345,18 @@ namespace Tests.StepDefinitions
                     _baaleyInyanBeTikModel.BaaleyInyanRashiBetik = true;
                 }
 
-                //if (i == 0)
-                //{
-                //    _baaleyInyanBeTikModel.DoarElectroni = "alex.palchisky@ness-tech.co.il";
-                //    _baaleyInyanBeTikModel.Telephone1 = "0547613154";
-                //}
-                //else
-                //{
-                //    _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
-                //        $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
-                //}
-                //_baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
-                        //$"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
+                
+                _baaleyInyanBeTikModel.DoarElectroni = $"test_bi_{listOfBaaleyInyan[i].ShemMispaha}_" +
+                $"{_baaleyInyanBeTikModel.FkSugBaalInyan}@gmail.com";
 
-                _baaleyInyanBeTikModel.DoarElectroni = "Alex.Palchisky@ness-tech.co.il";
+                foreach (var baaleyInyan in listOfBaaleyInyan)
+                {
+                    if (contactInfo.TryGetValue(baaleyInyan.PkMezaheBaalInyan, out var info))
+                    {
+                        _baaleyInyanBeTikModel.DoarElectroni = info.Email;
+                        _baaleyInyanBeTikModel.Telephone1 = info.Phone;
+                    }
+                }
 
                 _baaleyInyanBetikList.Add(_baaleyInyanBeTikModel);
                 _baaleyInyanBeTikModel = query.CreateBaalInyanBeTik(_baaleyInyanBeTikModel);
@@ -395,23 +396,32 @@ namespace Tests.StepDefinitions
             WhenSetOfAllTypesOfBaaleyInyan();
         }
 
-        [Given(@"default tik rishuy with parameters for api mahut: (.*), (.*), (.*)")]
-        public void GivenDefaultTikRishuyWithParametersForApiMahut(int numOfEntity=1, int kodMaslul=3, int kodMahutRashit=1)
+        [Given(@"default tik rishuy with parameters for api mahut: (.*), (.*), (.*), ""([^""]*)""")]
+        public void GivenDefaultTikRishuyWithParametersForApiMahut(int numOfEntity=1, int kodMaslul=3, int kodMahutRashit=1, string tz="NULL")
          {     
             NewEssekWithParameters();
             WhenBakashaWithParameters();
             SetSibotBakasha();
             CreateMahutBakashaAndTahanotAPI(numOfEntity, kodMaslul, kodMahutRashit);
-            //WhenSetOfAllTypesOfBaaleyInyan();
 
-            SetCustomBaaleyInyan();
+            switch (tz)
+            {
+                case "NULL":
+                    WhenSetOfAllTypesOfBaaleyInyan();
+                    break;
+                default:
+                    SetCustomBaaleyInyan(tz);
+                    break;
+            }
+ 
         }
+
 
         private void SetSibotBakasha()
         {
             RisTxSibotBakasha model = new RisTxSibotBakasha();
             model.PkCodeBakasha = _bakashaModel.PkCodeBakasha;
-            model.KodSiba = 1;
+            model.KodSiba = 11;
             query.CreateSiba(model);
         }
 
@@ -434,9 +444,9 @@ namespace Tests.StepDefinitions
 
                     isMainItem = (m == 0),
                     itemId = (m == 0) ? kodMahutRashit :
-              (m == 1) ? 1 :
-              (m == 2) ? 2 :
-              3,
+              (m == 1) ? 402000 :
+              (m == 2) ? 104000 :
+              104100,
 
                 isAddingDone = (m != 0),
 
@@ -461,8 +471,11 @@ namespace Tests.StepDefinitions
 
                 int codeParit = (int)content.data;
                 scenarioContext["CodeParit"] = codeParit;
-                scenarioContext["KodMahutRashit"] = codeParit;
                 CreateTahanotAPI(codeParit);
+                if (m == 0)
+                {
+                    scenarioContext["KodMahutRashit"] = codeParit;
+                }
             }
         }
         private void CreateTahanotAPI(int codeParit)
@@ -474,12 +487,13 @@ namespace Tests.StepDefinitions
                 {
                     requestItemId = codeParit,
                     stationStatus = 1,
-                    stationType = (i == 0) ? 3 :
-                      (i == 1) ? 4 :
-                      (i == 2) ? 3 :
-                      (i == 3) ? 15 :
-                      (i == 4) ? 61 : 4
-            };
+
+                    stationType = (i == 0) ? 2 :
+                      (i == 1) ? 3 :
+                      (i == 2) ? 10 :
+                      (i == 3) ? 12 :
+                      (i == 4) ? 35 : 4
+                };
                 _api.CreateApprovingStartion(model);
             }
 
@@ -578,7 +592,7 @@ namespace Tests.StepDefinitions
                         {
                             model.TaarichHagashatHabakasha = HandleContent.CalculateTimeSet(timeSet, model.TaarichHagashatHabakasha);
                             model.CreatedDate = HandleContent.CalculateTimeSet(timeSet, model.CreatedDate);
-                            query.UpdateBakashaToLicenseDB(model);
+                            query.UpdateBakashaToLicenseDB(model);                          
                         }
                         foreach (var model in _taachanaMeasheretModelList)
                         {
@@ -594,7 +608,7 @@ namespace Tests.StepDefinitions
                         _bakashotHiterCode = (List<int>)scenarioContext["CodBakashatIters"];
                         _bakashotHiterCode.Count.Should().NotBe(0);
 
-                        UpdateTimeHiterBakashot(timeSet, _bakashotHiterCode);
+                        //UpdateTimeHiterBakashot(timeSet, _bakashotHiterCode);
                         for (int i = 0; i < _bakashotHiterCode.Count; i++)
                         {
                             List<RisTTachanaMeasheret> _tachanotNilveModel = query.GetTahanotOfHiter(_bakashotHiterCode[i]);
